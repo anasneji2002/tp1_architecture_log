@@ -1,0 +1,38 @@
+@startuml ResourceAllocationDiagram
+skinparam classAttributeIconSize 0
+
+' ResourceAllocator class with a protected field of type ResourceMarker
+class ResourceAllocator {
+  # _resourceMarker : ResourceMarker
+  + allocate() : int
+  + free(resource) : void
+  + findFreeSlot() : int
+}
+
+' ResourceMarker interface with two methods
+interface ResourceMarker {
+  + markSlotFree(resource) : void
+  + markSlotBusy(resource) : void
+}
+
+' SpaceResourceMarker class implementing ResourceMarker
+class SpaceResourceMarker {
+  + SpaceResourceMarker()
+  + markSlotFree(resource) : void
+  + markSlotBusy(resource) : void
+}
+
+' TimeResourceMarker class implementing ResourceMarker
+class TimeResourceMarker {
+  + TimeResourceMarker()
+  + markSlotFree(resource) : void
+  + markSlotBusy(resource) : void
+}
+
+
+' Define relationships
+ResourceAllocator --> ResourceMarker : uses
+SpaceResourceMarker ..|> ResourceMarker
+TimeResourceMarker ..|> ResourceMarker
+
+@enduml

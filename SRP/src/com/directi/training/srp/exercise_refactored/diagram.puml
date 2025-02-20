@@ -1,0 +1,46 @@
+@startuml CarManagementDiagram
+
+' Define the CarManager class with its fields and methods
+class CarManager {
+  - _carsDb : CarDb
+  - _carListFormatter : CarListFormatter
+  - _bestCarSelector : BestCarSelector
+  + getFromDb(carId: String) : Car
+  + getCarsNames() : String
+  + getBestCar() : Car
+}
+
+' Define the CarDb class with a method returning a list of Car objects
+class CarDb {
+  + get_carsDb() : List<Car>
+}
+
+' Define the CarListFormatter class with its method
+class CarListFormatter {
+  + getCarsNames(cars: List<Car>) : String
+}
+
+' Define the BestCarSelector class with its method
+class BestCarSelector {
+  + getBestCar(cars: List<Car>) : Car
+}
+
+' Define the Car class with at least one method used in CarManager
+class Car {
+  + getId() : String
+}
+
+class client {
+
+}
+
+' Relationships: CarManager uses CarDb, CarListFormatter, and BestCarSelector.
+CarManager --> CarDb
+CarManager --> CarListFormatter
+CarManager --> BestCarSelector
+
+' CarDb is associated with Car, as it returns a list of Car objects.
+CarDb --> Car
+
+client --> CarManager
+@enduml

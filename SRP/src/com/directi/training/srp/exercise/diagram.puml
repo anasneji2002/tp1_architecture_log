@@ -1,0 +1,23 @@
+@startuml CarManagementDiagram
+skinparam classAttributeIconSize 0
+
+' CarManager class definition
+class CarManager {
+  - _carsDb : List<Car>
+  + getFromDb(carId: String) : Car
+  + getCarsNames() : String
+  + getBestCar() : Car
+}
+
+' Car class definition (minimal)
+class Car {
+  + Car(id: String, model: String, brand: String)
+  + getId() : String
+  + getModel() : String
+  + getBrand() : String
+}
+
+' CarManager has an aggregation relationship with Car (via its list field)
+CarManager --> "List<Car>" Car
+
+@enduml
