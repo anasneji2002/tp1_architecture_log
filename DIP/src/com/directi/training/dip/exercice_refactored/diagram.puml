@@ -1,0 +1,47 @@
+
+@startuml
+interface IReader {
+    + read() : String
+}
+
+interface IWriter {
+    + write(String data)
+}
+
+class FileReaderModule {
+    + read() : String
+}
+
+class FileWriterModule {
+    + write(String data)
+}
+
+class NetworkReaderModule {
+    + read() : String
+}
+
+class DatabaseWriterModule {
+    + write(String data)
+}
+
+class EncodingModule {
+    + EncodingModule(IReader reader, IWriter writer)
+    + encode()
+}
+
+class EncodingModuleClient {
+    + main(String[] args)
+}
+
+IReader <|.. FileReaderModule
+IReader <|.. NetworkReaderModule
+
+IWriter <|.. FileWriterModule
+IWriter <|.. DatabaseWriterModule
+
+EncodingModule ..> IReader
+EncodingModule ..> IWriter
+
+EncodingModuleClient ..> EncodingModule
+
+@enduml

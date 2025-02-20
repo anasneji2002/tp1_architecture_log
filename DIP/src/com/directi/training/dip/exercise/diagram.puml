@@ -1,0 +1,19 @@
+
+@startuml
+class EncodingModule {
+    + encodeWithFiles()
+    + encodeBasedOnNetworkAndDatabase()
+}
+
+class EncodingModuleClient {
+    + main(String[] args)
+}
+
+class MyDatabase {
+    + write(String inputString) : int
+}
+
+EncodingModuleClient ..> EncodingModule
+EncodingModule ..> MyDatabase : uses
+
+@enduml
