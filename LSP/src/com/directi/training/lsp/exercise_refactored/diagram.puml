@@ -1,0 +1,37 @@
+@startuml AfterRefactoring
+skinparam classAttributeIconSize 0
+
+' SwimQuack interface
+interface SwimQuack {
+  + quack() : void
+  + swim() : void
+}
+
+' Duck class implementing SwimQuack
+class Duck {
+  + quack() : void
+  + swim() : void
+}
+
+' ElectronicDuck class implementing SwimQuack
+class ElectronicDuck {
+  - _on : boolean
+  + quack() : void
+  + swim() : void
+  + turnOn() : void
+  + turnOff() : void
+}
+
+' Pool class
+class Pool {
+  + run() : void
+  - quack(SwimQuack... ducks) : void
+  - swim(SwimQuack... ducks) : void
+}
+
+' Relationships
+Duck ..|> SwimQuack
+ElectronicDuck ..|> SwimQuack
+Pool --> SwimQuack
+
+@enduml
