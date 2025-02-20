@@ -1,0 +1,30 @@
+@startuml BeforeRefactoring
+skinparam classAttributeIconSize 0
+
+' Duck class
+class Duck {
+  + quack() : void
+  + swim() : void
+}
+
+' ElectronicDuck class extending Duck (violates LSP)
+class ElectronicDuck {
+  - _on : boolean
+  + quack() : void
+  + swim() : void
+  + turnOn() : void
+  + turnOff() : void
+}
+
+' Pool class
+class Pool {
+  + run() : void
+  - quack(Duck... ducks) : void
+  - swim(Duck... ducks) : void
+}
+
+' Relationships
+ElectronicDuck --|> Duck
+Pool --> Duck
+
+@enduml
